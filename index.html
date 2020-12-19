@@ -1,0 +1,75 @@
+<script>
+function generator(x)
+{
+var a=document.getElementById("str").value;
+var b=document.getElementById("findstr").value;
+var c=document.getElementById("replstr").value;
+var d=0;var e="";var f="";
+if(x==1)
+{
+document.getElementById("output").innerHTML=a;
+}
+else
+{
+function getposone()
+{
+d=a.search(b);
+if(d==-1){e+=a; stop(e);}
+else{
+if(x==2){
+f="<font class='mark2'>"+b+"</font>";}
+if(x==3){
+f="<font class='mark1'>"+c+"</font>";}
+a=a.replace(b,f);
+e+=a.slice(0,(d+(f.length)));
+a=a.slice((d+f.length),a.length);
+}
+};
+var t=setInterval(getposone,0);
+}
+if(x==4)
+{
+document.getElementById("output").innerHTML="";
+}
+function stop(e)
+{
+clearInterval(t);
+document.getElementById("output").innerHTML=e;
+}
+};
+</script>
+<style>
+.outputbox
+{
+display:block;
+width:400;
+height:250;
+background:#f2f2f2;
+color:#464646;
+overflow-y:scroll;
+}
+.mark1
+{
+background:yellow;
+font-weight:bold;
+}
+.mark2
+{
+background:orange;
+font-weight:bold;
+}
+</style>
+
+<textarea id="str" rows="5" cols="50"></textarea><br/>
+<textarea id="findstr" rows="5" cols="50"></textarea><br/>
+<textarea id="replstr" rows="5" cols="50"></textarea><br/>
+<button onclick="generator(1)">View Now</button>
+<button onclick="generator(2)">Find & Mark Now</button>
+<button onclick="generator(3)">Replace Now</button>
+<button onclick="generator(4)">Hide Flags</button>
+
+
+<br/><br/>
+
+<div class="outputbox" id="output"></div>
+
